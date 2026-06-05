@@ -17,20 +17,35 @@
       height: 100vh;
       background: #f3eeee;
       overflow: hidden;
+      font-family: Georgia, "Times New Roman", "Microsoft JhengHei", serif;
+    }
+
+    audio {
+      display: none;
+    }
+
+    .screen {
+      width: 100vw;
+      height: 100vh;
+      background: #f3eeee;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    /* 第一頁：愛心 */
+
+    #heartScreen {
       font-family: Arial, "Microsoft JhengHei", sans-serif;
     }
 
-    .page {
-      width: 100vw;
-      height: 100vh;
-      position: relative;
-      background: #f3eeee;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .heart {
+    .heart-area {
       position: relative;
       width: 520px;
       height: 430px;
@@ -41,63 +56,35 @@
       font-size: 15px;
       font-weight: bold;
       white-space: nowrap;
-
       color: #ff4f9a;
-
       text-shadow:
-       0 0 3px #ffffff,
-       0 0 7px #ff8fbd,
+        0 0 3px #ffffff,
+        0 0 7px #ff8fbd,
         0 0 14px #ff3f91,
         0 0 24px #d90063;
-
-       opacity: 1;
+      opacity: 1;
       animation: wordGlow 3s infinite ease-in-out;
-}
+    }
 
     @keyframes wordGlow {
       0% {
-        opacity: 0.25;
-        filter: brightness(0.7);
+        opacity: 0.85;
+        filter: brightness(1);
       }
 
       35% {
         opacity: 1;
-        filter: brightness(1.8);
+        filter: brightness(1.45);
       }
 
       70% {
-        opacity: 0.75;
+        opacity: 0.95;
         filter: brightness(1.2);
       }
 
       100% {
-        opacity: 0.25;
-        filter: brightness(0.7);
-      }
-    }
-
-    .center-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -35%);
-      color: rgba(255, 214, 232, 0.85);
-      font-size: 18px;
-      font-weight: bold;
-      text-shadow:
-        0 0 6px #fff,
-        0 0 12px #ff8fbd,
-        0 0 22px #ff4f9a;
-      animation: centerGlow 2.5s infinite ease-in-out;
-    }
-
-    @keyframes centerGlow {
-      0%, 100% {
-        opacity: 0.45;
-      }
-
-      50% {
-        opacity: 1;
+        opacity: 0.85;
+        filter: brightness(1);
       }
     }
 
@@ -111,8 +98,152 @@
       letter-spacing: 1px;
     }
 
+    /* 第二、三頁共用 */
+
+    .question-page {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    h1 {
+      color: #a73a3a;
+      font-size: 46px;
+      letter-spacing: 2px;
+      text-align: center;
+      margin-bottom: 35px;
+      text-shadow:
+        1px 1px 0 #fff,
+        2px 2px 0 rgba(120, 0, 0, 0.25);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      justify-content: center;
+      min-height: 80px;
+      margin-bottom: 70px;
+    }
+
+    button {
+      border: none;
+      color: white;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      font-weight: bold;
+      padding: 12px 38px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 2px 5px rgba(255, 255, 255, 0.5),
+        0 8px 0 rgba(0, 0, 0, 0.18),
+        0 12px 18px rgba(0, 0, 0, 0.18);
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    button:active {
+      box-shadow:
+        inset 0 2px 5px rgba(255, 255, 255, 0.5),
+        0 3px 0 rgba(0, 0, 0, 0.18),
+        0 7px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .yes-btn {
+      background: linear-gradient(135deg, #20d6bd, #006b4f);
+      transform: scale(1);
+      transform-origin: center;
+    }
+
+    .no-btn {
+      background: linear-gradient(135deg, #ff867c, #b83725);
+    }
+
+    .hide {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .photo-box {
+      width: 330px;
+      height: 330px;
+      margin-top: 10px;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow:
+        0 10px 25px rgba(120, 0, 0, 0.18),
+        0 0 20px rgba(255, 143, 189, 0.35);
+    }
+
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .date-photo-box {
+      width: 330px;
+      height: 330px;
+    }
+
+    /* 第四頁 */
+
+    .final-box {
+      text-align: center;
+      color: #a73a3a;
+      padding: 30px;
+    }
+
+    .final-text {
+      font-size: 56px;
+      font-weight: bold;
+      text-shadow:
+        1px 1px 0 #fff,
+        0 0 14px rgba(255, 111, 174, 0.65);
+      animation: bounce 1.2s infinite ease-in-out;
+    }
+
+    .final-sub-text {
+      margin-top: 24px;
+      font-size: 28px;
+      color: #c95c75;
+      font-weight: bold;
+    }
+
+    .final-heart {
+      margin-top: 30px;
+      font-size: 52px;
+      animation: heartbeat 1s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-14px);
+      }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.18);
+      }
+    }
+
     @media (max-width: 600px) {
-      .heart {
+      .heart-area {
         width: 360px;
         height: 330px;
       }
@@ -120,35 +251,136 @@
       .word {
         font-size: 12px;
       }
+    }
 
-      .center-text {
-        font-size: 15px;
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 34px;
+        margin-bottom: 28px;
+      }
+
+      button {
+        font-size: 24px;
+        padding: 10px 30px;
+      }
+
+      .buttons {
+        margin-bottom: 55px;
+      }
+
+      .photo-box {
+        width: 290px;
+        height: 290px;
+      }
+
+      .date-photo-box {
+        width: 290px;
+        height: 290px;
+      }
+
+      .final-text {
+        font-size: 42px;
+      }
+
+      .final-sub-text {
+        font-size: 24px;
+      }
+
+      .final-heart {
+        font-size: 44px;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
-    <div class="heart" id="heart">
-      
-    </div>
+  <audio id="bgMusic" src="music/lover.mp3" loop></audio>
 
+  <!-- 第一頁：愛心 -->
+  <section class="screen active" id="heartScreen">
+    <div class="heart-area" id="heart"></div>
     <div class="hint">任意點擊一處</div>
-  </div>
+  </section>
+
+  <!-- 第二頁：Do you love me -->
+  <section class="screen" id="loveScreen">
+    <div class="question-page">
+      <h1>DO YOU LOVE ME?</h1>
+
+      <div class="buttons">
+        <button class="yes-btn" id="loveYesBtn">YES</button>
+        <button class="no-btn" id="loveNoBtn">NO</button>
+      </div>
+
+      <div class="photo-box">
+        <img src="images/loveu1.png" alt="our photo">
+      </div>
+    </div>
+  </section>
+
+  <!-- 第三頁：約會邀請 -->
+  <section class="screen" id="dateQuestionScreen">
+    <div class="question-page">
+      <h1>你要和我去約會嗎？</h1>
+
+      <div class="buttons">
+        <button class="yes-btn" id="dateYesBtn">YES</button>
+      </div>
+
+      <div class="photo-box date-photo-box">
+        <img src="images/date-photo.jpg" alt="date photo">
+      </div>
+    </div>
+  </section>
+
+  <!-- 第四頁：結果 -->
+  <section class="screen" id="finalScreen">
+    <div class="final-box">
+      <div class="final-text">yipee &gt;&lt;</div>
+      <div class="final-sub-text">等等見 我愛你!</div>
+      <div class="final-heart">💗</div>
+    </div>
+  </section>
 
   <script>
+    const music = document.getElementById("bgMusic");
+
+    const heartScreen = document.getElementById("heartScreen");
+    const loveScreen = document.getElementById("loveScreen");
+    const dateQuestionScreen = document.getElementById("dateQuestionScreen");
+    const finalScreen = document.getElementById("finalScreen");
+
+    const loveYesBtn = document.getElementById("loveYesBtn");
+    const loveNoBtn = document.getElementById("loveNoBtn");
+    const dateYesBtn = document.getElementById("dateYesBtn");
+
+    let musicStarted = false;
+
+    function showScreen(screen) {
+      heartScreen.classList.remove("active");
+      loveScreen.classList.remove("active");
+      dateQuestionScreen.classList.remove("active");
+      finalScreen.classList.remove("active");
+
+      screen.classList.add("active");
+    }
+
+    function startMusic() {
+      if (!musicStarted) {
+        music.currentTime = 0;
+        music.play();
+        musicStarted = true;
+      }
+    }
+
+    // 產生第一頁愛心
     const heart = document.getElementById("heart");
-
     const text = "I love you";
-
     const isMobile = window.innerWidth <= 600;
 
     const centerX = isMobile ? 180 : 260;
     const centerY = isMobile ? 155 : 205;
     const scale = isMobile ? 10 : 14;
-
-
     const totalWords = 115;
 
     for (let i = 0; i < totalWords; i++) {
@@ -173,16 +405,44 @@
       const angle = Math.atan2(y, x) * 180 / Math.PI;
       word.style.transform = `translate(-50%, -50%) rotate(${angle / 4}deg)`;
 
-
-      word.style.animationDelay = (i * 0.035) + "s";
+      word.style.animationDelay = "0s";
 
       heart.appendChild(word);
     }
-    document.body.addEventListener("click", function () {
+
+    // 第一頁點擊：跳通知、開始音樂、進第二頁
+    heartScreen.addEventListener("click", function () {
       alert("Happy Uchen Day💗");
-      window.location.href = "love.html";
+      startMusic();
+      showScreen(loveScreen);
     });
 
+    // 第二頁 NO：不換頁，YES 變大
+    let yesScale = 1;
+    let noClickCount = 0;
+
+    loveNoBtn.addEventListener("click", function () {
+      noClickCount++;
+
+      yesScale += 0.35;
+      loveYesBtn.style.transform = `scale(${yesScale})`;
+
+      if (noClickCount >= 6) {
+        loveNoBtn.classList.add("hide");
+        loveYesBtn.style.transform = "scale(3.2)";
+        loveYesBtn.style.zIndex = "10";
+      }
+    });
+
+    // 第二頁 YES：進第三頁
+    loveYesBtn.addEventListener("click", function () {
+      showScreen(dateQuestionScreen);
+    });
+
+    // 第三頁 YES：進第四頁
+    dateYesBtn.addEventListener("click", function () {
+      showScreen(finalScreen);
+    });
   </script>
 </body>
 </html>

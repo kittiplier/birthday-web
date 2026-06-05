@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>𝒇𝒐𝒓 𝑼</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #f3eeee;
+      overflow: hidden;
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+    }
+
+    .page {
+      width: 100vw;
+      height: 100vh;
+      position: relative;
+      background: #f3eeee;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .heart {
+      position: relative;
+      width: 520px;
+      height: 430px;
+    }
+
+    .word {
+      position: absolute;
+      font-size: 15px;
+      font-weight: bold;
+      white-space: nowrap;
+
+      color: #ff4f9a;
+
+      text-shadow:
+       0 0 3px #ffffff,
+       0 0 7px #ff8fbd,
+        0 0 14px #ff3f91,
+        0 0 24px #d90063;
+
+       opacity: 1;
+      animation: wordGlow 3s infinite ease-in-out;
+}
+
+    @keyframes wordGlow {
+      0% {
+        opacity: 0.25;
+        filter: brightness(0.7);
+      }
+
+      35% {
+        opacity: 1;
+        filter: brightness(1.8);
+      }
+
+      70% {
+        opacity: 0.75;
+        filter: brightness(1.2);
+      }
+
+      100% {
+        opacity: 0.25;
+        filter: brightness(0.7);
+      }
+    }
+
+    .center-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -35%);
+      color: rgba(255, 214, 232, 0.85);
+      font-size: 18px;
+      font-weight: bold;
+      text-shadow:
+        0 0 6px #fff,
+        0 0 12px #ff8fbd,
+        0 0 22px #ff4f9a;
+      animation: centerGlow 2.5s infinite ease-in-out;
+    }
+
+    @keyframes centerGlow {
+      0%, 100% {
+        opacity: 0.45;
+      }
+
+      50% {
+        opacity: 1;
+      }
+    }
+
+    .hint {
+      position: absolute;
+      bottom: 35px;
+      width: 100%;
+      text-align: center;
+      color: rgba(0, 0, 0, 0.45);
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 600px) {
+      .heart {
+        width: 360px;
+        height: 330px;
+      }
+
+      .word {
+        font-size: 12px;
+      }
+
+      .center-text {
+        font-size: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <div class="heart" id="heart">
+      
+    </div>
+
+    <div class="hint">任意點擊一處</div>
+  </div>
+
+  <script>
+    const heart = document.getElementById("heart");
+
+    const text = "I love you";
+
+    const isMobile = window.innerWidth <= 600;
+
+    const centerX = isMobile ? 180 : 260;
+    const centerY = isMobile ? 155 : 205;
+    const scale = isMobile ? 10 : 14;
+
+
+    const totalWords = 115;
+
+    for (let i = 0; i < totalWords; i++) {
+      const t = (Math.PI * 2 * i) / totalWords;
+
+      const x = 16 * Math.pow(Math.sin(t), 3);
+
+      const y = -(
+        13 * Math.cos(t) -
+        5 * Math.cos(2 * t) -
+        2 * Math.cos(3 * t) -
+        Math.cos(4 * t)
+      );
+
+      const word = document.createElement("div");
+      word.className = "word";
+      word.innerText = text;
+
+      word.style.left = centerX + x * scale + "px";
+      word.style.top = centerY + y * scale + "px";
+
+      const angle = Math.atan2(y, x) * 180 / Math.PI;
+      word.style.transform = `translate(-50%, -50%) rotate(${angle / 4}deg)`;
+
+
+      word.style.animationDelay = (i * 0.035) + "s";
+
+      heart.appendChild(word);
+    }
+    document.body.addEventListener("click", function () {
+      alert("Happy Uchen Day💗");
+      window.location.href = "love.html";
+    });
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Yipee</title>
+
+  <style>
+    body {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #fff0f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: Georgia, "Times New Roman", "Microsoft JhengHei", serif;
+      overflow: hidden;
+    }
+
+    .box {
+      text-align: center;
+      color: #a73a3a;
+      padding: 30px;
+    }
+
+    .text {
+      font-size: 56px;
+      font-weight: bold;
+      text-shadow:
+        1px 1px 0 #fff,
+        0 0 14px rgba(255, 111, 174, 0.65);
+      animation: bounce 1.2s infinite ease-in-out;
+    }
+
+    .sub-text {
+      margin-top: 24px;
+      font-size: 28px;
+      color: #c95c75;
+      font-weight: bold;
+    }
+
+    .heart {
+      margin-top: 30px;
+      font-size: 52px;
+      animation: heartbeat 1s infinite ease-in-out;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-14px);
+      }
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.18);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .text {
+        font-size: 42px;
+      }
+
+      .sub-text {
+        font-size: 24px;
+      }
+
+      .heart {
+        font-size: 44px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="text">yipee &gt;&lt;</div>
+    <div class="sub-text">等等見 我愛你!</div>
+    <div class="heart">💗</div>
+  </div>
+</body>
+</html>

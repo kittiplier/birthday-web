@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>𝒇𝒐𝒓 𝑼</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #f3eeee;
+      font-family: Georgia, "Times New Roman", serif;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .page {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    h1 {
+      color: #a73a3a;
+      font-size: 46px;
+      letter-spacing: 2px;
+      text-align: center;
+      margin-bottom: 35px;
+      text-shadow:
+        1px 1px 0 #fff,
+        2px 2px 0 rgba(120, 0, 0, 0.25);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 18px;
+      align-items: center;
+      justify-content: center;
+      min-height: 80px;
+      margin-bottom: 70px;
+    }
+
+    button {
+      border: none;
+      color: white;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      font-weight: bold;
+      padding: 12px 38px;
+      border-radius: 12px;
+      cursor: pointer;
+      box-shadow:
+        inset 0 2px 5px rgba(255, 255, 255, 0.5),
+        0 8px 0 rgba(0, 0, 0, 0.18),
+        0 12px 18px rgba(0, 0, 0, 0.18);
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    #yesBtn {
+      background: linear-gradient(135deg, #20d6bd, #006b4f);
+      transform: scale(1);
+      transform-origin: center;
+    }
+
+    #noBtn {
+      background: linear-gradient(135deg, #ff867c, #b83725);
+    }
+
+    #noBtn:active,
+    #yesBtn:active {
+      box-shadow:
+        inset 0 2px 5px rgba(255, 255, 255, 0.5),
+        0 3px 0 rgba(0, 0, 0, 0.18),
+        0 7px 12px rgba(0, 0, 0, 0.18);
+    }
+
+    .photo-box {
+  width: 330px;
+  height: 330px;
+  margin-top: 10px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow:
+    0 10px 25px rgba(120, 0, 0, 0.18),
+    0 0 20px rgba(255, 143, 189, 0.35);
+}
+
+.photo-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 34px;
+        margin-bottom: 28px;
+      }
+
+      button {
+        font-size: 24px;
+        padding: 10px 30px;
+      }
+
+      .buttons {
+        margin-bottom: 55px;
+      }
+
+      .cat {
+        width: 290px;
+        height: 200px;
+      }
+
+      .cat-body {
+        width: 280px;
+        height: 155px;
+      }
+
+      .face {
+        font-size: 46px;
+        top: 58px;
+      }
+
+      .belly {
+        left: 86px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <h1>DO YOU LOVE ME?</h1>
+
+    <div class="buttons">
+      <button id="yesBtn">YES</button>
+      <button id="noBtn">NO</button>
+    </div>
+
+    <div class="photo-box">
+        <img src="images/loveu1.png" alt="our photo">
+    </div>
+  </div>
+
+  <script>
+    const yesBtn = document.getElementById("yesBtn");
+    const noBtn = document.getElementById("noBtn");
+
+    let yesScale = 1;
+    let noClickCount = 0;
+
+    noBtn.addEventListener("click", function () {
+      noClickCount++;
+
+      yesScale += 0.35;
+      yesBtn.style.transform = `scale(${yesScale})`;
+
+      if (noClickCount >= 6) {
+        noBtn.classList.add("hide");
+        yesBtn.style.transform = "scale(3.2)";
+        yesBtn.style.zIndex = "10";
+      }
+    });
+
+    yesBtn.addEventListener("click", function () {
+      window.location.href = "result.html";
+    });
+  </script>
+</body>
+</html>

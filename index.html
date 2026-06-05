@@ -129,12 +129,13 @@
       justify-content: center;
       min-height: 80px;
       margin-bottom: 70px;
+      flex-wrap: wrap;
     }
 
     button {
       border: none;
       color: white;
-      font-family: Georgia, "Times New Roman", serif;
+      font-family: Georgia, "Times New Roman", "Microsoft JhengHei", serif;
       font-size: 28px;
       font-weight: bold;
       padding: 12px 38px;
@@ -158,6 +159,10 @@
       background: linear-gradient(135deg, #20d6bd, #006b4f);
       transform: scale(1);
       transform-origin: center;
+    }
+
+    .date-yes-btn {
+      background: linear-gradient(135deg, #ff9ac8, #ff5f9e);
     }
 
     .no-btn {
@@ -192,7 +197,7 @@
       height: 330px;
     }
 
-    /* 第四頁 */
+    /* 第四頁：yipee */
 
     .final-box {
       text-align: center;
@@ -219,6 +224,168 @@
     .final-heart {
       margin-top: 30px;
       font-size: 52px;
+      animation: heartbeat 1s infinite ease-in-out;
+    }
+
+    .final-buttons {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .pink-btn {
+      border: none;
+      background: linear-gradient(135deg, #ff9ac8, #ff5f9e);
+      color: white;
+      font-family: "Microsoft JhengHei", Georgia, serif;
+      font-size: 20px;
+      font-weight: bold;
+      padding: 13px 28px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow:
+        0 6px 0 rgba(170, 50, 100, 0.28),
+        0 12px 22px rgba(255, 95, 158, 0.28);
+    }
+
+    .pink-btn:active {
+      transform: translateY(4px);
+      box-shadow:
+        0 2px 0 rgba(170, 50, 100, 0.28),
+        0 8px 16px rgba(255, 95, 158, 0.22);
+    }
+
+    .back-btn {
+      position: absolute;
+      top: 22px;
+      left: 22px;
+      border: none;
+      background: linear-gradient(135deg, #ff9ac8, #ff5f9e);
+      color: white;
+      font-family: "Microsoft JhengHei", Georgia, serif;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 10px 17px;
+      border-radius: 999px;
+      cursor: pointer;
+      box-shadow:
+        0 4px 0 rgba(170, 50, 100, 0.22),
+        0 8px 16px rgba(255, 95, 158, 0.22);
+      z-index: 10;
+    }
+
+    .back-btn:active {
+      transform: translateY(3px);
+      box-shadow:
+        0 1px 0 rgba(170, 50, 100, 0.22),
+        0 5px 12px rgba(255, 95, 158, 0.2);
+    }
+
+    /* 第五頁：小卡片 */
+
+    .card-box {
+      width: 86%;
+      max-width: 520px;
+      max-height: 82vh;
+      overflow-y: auto;
+      background: rgba(255, 255, 255, 0.72);
+      border: 2px solid rgba(255, 143, 189, 0.55);
+      border-radius: 28px;
+      padding: 28px 24px;
+      color: #8f2f45;
+      box-shadow:
+        0 12px 30px rgba(120, 0, 0, 0.16),
+        0 0 24px rgba(255, 143, 189, 0.35);
+    }
+
+    .card-title {
+      text-align: center;
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 22px;
+      color: #a73a3a;
+      text-shadow: 1px 1px 0 #fff;
+    }
+
+    .card-text {
+      font-family: "Microsoft JhengHei", Georgia, serif;
+      font-size: 18px;
+      line-height: 2;
+      white-space: pre-line;
+      text-align: left;
+    }
+
+    .card-heart {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 34px;
+      animation: heartbeat 1s infinite ease-in-out;
+    }
+
+    /* 第六頁：我們的回憶 */
+
+    .memory-box {
+      width: 88%;
+      max-width: 620px;
+      max-height: 84vh;
+      overflow-y: auto;
+      background: rgba(255, 255, 255, 0.72);
+      border: 2px solid rgba(255, 143, 189, 0.55);
+      border-radius: 28px;
+      padding: 28px 24px;
+      color: #8f2f45;
+      box-shadow:
+        0 12px 30px rgba(120, 0, 0, 0.16),
+        0 0 24px rgba(255, 143, 189, 0.35);
+    }
+
+    .memory-title {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      margin-bottom: 22px;
+      color: #a73a3a;
+      text-shadow: 1px 1px 0 #fff;
+    }
+
+    .memory-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .memory-placeholder {
+      height: 150px;
+      border-radius: 20px;
+      border: 2px dashed rgba(255, 95, 158, 0.6);
+      background: rgba(255, 240, 245, 0.75);
+      color: #c95c75;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      font-family: "Microsoft JhengHei", Georgia, serif;
+      font-size: 15px;
+      line-height: 1.6;
+      padding: 12px;
+    }
+
+    .memory-text {
+      font-family: "Microsoft JhengHei", Georgia, serif;
+      font-size: 18px;
+      line-height: 2;
+      white-space: pre-line;
+      text-align: left;
+    }
+
+    .memory-heart {
+      text-align: center;
+      margin-top: 24px;
+      font-size: 34px;
       animation: heartbeat 1s infinite ease-in-out;
     }
 
@@ -289,6 +456,55 @@
       .final-heart {
         font-size: 44px;
       }
+
+      .pink-btn {
+        font-size: 17px;
+        padding: 12px 24px;
+      }
+
+      .back-btn {
+        top: 16px;
+        left: 16px;
+        font-size: 14px;
+        padding: 9px 15px;
+      }
+
+      .card-box {
+        width: 88%;
+        padding: 24px 20px;
+      }
+
+      .card-title {
+        font-size: 24px;
+      }
+
+      .card-text {
+        font-size: 16px;
+        line-height: 1.9;
+      }
+
+      .memory-box {
+        width: 88%;
+        padding: 24px 20px;
+      }
+
+      .memory-title {
+        font-size: 25px;
+      }
+
+      .memory-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .memory-placeholder {
+        height: 130px;
+        font-size: 14px;
+      }
+
+      .memory-text {
+        font-size: 16px;
+        line-height: 1.9;
+      }
     }
   </style>
 </head>
@@ -324,7 +540,7 @@
       <h1>你要和我去約會嗎？</h1>
 
       <div class="buttons">
-        <button class="yes-btn" id="dateYesBtn">YES</button>
+        <button class="yes-btn date-yes-btn" id="dateYesBtn">YES</button>
       </div>
 
       <div class="photo-box date-photo-box">
@@ -339,6 +555,51 @@
       <div class="final-text">yipee &gt;&lt;</div>
       <div class="final-sub-text">等等見 我愛你!</div>
       <div class="final-heart">💗</div>
+
+      <div class="final-buttons">
+        <button class="pink-btn" id="openCardBtn">打開小卡片</button>
+        <button class="pink-btn" id="openMemoryBtn">我們的回憶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- 第五頁：生日小卡片 -->
+  <section class="screen" id="cardScreen">
+    <button class="back-btn" id="backFromCardBtn">← 回上一頁</button>
+
+    <div class="card-box">
+      <div class="card-title"🤍🐰 給我親愛的小寶寶 🐰🤍</div>
+
+      <div class="card-text">
+我們已經在一起126天咯
+這些天你大部分時間都在軍中，我們也遇到很多小問題；不過我真的非常非常愛你！我很願意為你變好 
+就算我說過很多次我還是要說，謝謝北鼻一直包容我的小脾氣，謝謝你一直不斷說愛我，謝謝你為我創造一個溫暖的家
+今天是一年中最重要的一天，也就是寶寶的生日，我希望今天，不只今天，希望我每一天都能為你帶來快樂，我希望你能一直過得平安，希望我能夠一直在你身邊
+永遠愛你，你要永遠健康</div>
+
+      <div class="card-heart">💗</div>
+    </div>
+  </section>
+
+  <!-- 第六頁：我們的回憶 -->
+  <section class="screen" id="memoryScreen">
+    <button class="back-btn" id="backFromMemoryBtn">← 回上一頁</button>
+
+    <div class="memory-box">
+      <div class="memory-title">📷</div>
+
+      <div class="memory-grid">
+        <div class="memory-placeholder"></div>
+        <div class="memory-placeholder"></div>
+        <div class="memory-placeholder"></div>
+        <div class="memory-placeholder"></div>
+      </div>
+
+      <div class="memory-text">回憶文字
+
+</div>
+
+      <div class="memory-heart">💗</div>
     </div>
   </section>
 
@@ -349,10 +610,18 @@
     const loveScreen = document.getElementById("loveScreen");
     const dateQuestionScreen = document.getElementById("dateQuestionScreen");
     const finalScreen = document.getElementById("finalScreen");
+    const cardScreen = document.getElementById("cardScreen");
+    const memoryScreen = document.getElementById("memoryScreen");
 
     const loveYesBtn = document.getElementById("loveYesBtn");
     const loveNoBtn = document.getElementById("loveNoBtn");
     const dateYesBtn = document.getElementById("dateYesBtn");
+
+    const openCardBtn = document.getElementById("openCardBtn");
+    const openMemoryBtn = document.getElementById("openMemoryBtn");
+
+    const backFromCardBtn = document.getElementById("backFromCardBtn");
+    const backFromMemoryBtn = document.getElementById("backFromMemoryBtn");
 
     let musicStarted = false;
 
@@ -361,6 +630,8 @@
       loveScreen.classList.remove("active");
       dateQuestionScreen.classList.remove("active");
       finalScreen.classList.remove("active");
+      cardScreen.classList.remove("active");
+      memoryScreen.classList.remove("active");
 
       screen.classList.add("active");
     }
@@ -441,6 +712,26 @@
 
     // 第三頁 YES：進第四頁
     dateYesBtn.addEventListener("click", function () {
+      showScreen(finalScreen);
+    });
+
+    // 第四頁：打開小卡片
+    openCardBtn.addEventListener("click", function () {
+      showScreen(cardScreen);
+    });
+
+    // 第四頁：我們的回憶
+    openMemoryBtn.addEventListener("click", function () {
+      showScreen(memoryScreen);
+    });
+
+    // 小卡片頁：回上一頁
+    backFromCardBtn.addEventListener("click", function () {
+      showScreen(finalScreen);
+    });
+
+    // 回憶頁：回上一頁
+    backFromMemoryBtn.addEventListener("click", function () {
       showScreen(finalScreen);
     });
   </script>

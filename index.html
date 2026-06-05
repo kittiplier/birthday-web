@@ -329,7 +329,7 @@
 
     .memory-box {
       width: 88%;
-      max-width: 620px;
+      max-width: 520px;
       max-height: 84vh;
       overflow-y: auto;
       background: rgba(255, 255, 255, 0.72);
@@ -346,47 +346,78 @@
       text-align: center;
       font-size: 30px;
       font-weight: bold;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       color: #a73a3a;
       text-shadow: 1px 1px 0 #fff;
     }
 
-    .memory-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-      margin-bottom: 22px;
+    .memory-photo-frame {
+      width: 100%;
+      height: 360px;
+      border-radius: 24px;
+      overflow: hidden;
+      background: rgba(255, 240, 245, 0.8);
+      box-shadow:
+        0 8px 22px rgba(120, 0, 0, 0.14),
+        0 0 18px rgba(255, 143, 189, 0.28);
     }
 
-    .memory-placeholder {
-      height: 150px;
-      border-radius: 20px;
-      border: 2px dashed rgba(255, 95, 158, 0.6);
-      background: rgba(255, 240, 245, 0.75);
+    .memory-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .memory-count {
+      margin-top: 14px;
+      text-align: center;
       color: #c95c75;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    .memory-caption {
+      margin-top: 14px;
+      min-height: 70px;
+      font-family: "Microsoft JhengHei", Georgia, serif;
+      font-size: 18px;
+      line-height: 1.8;
+      white-space: pre-line;
+      text-align: center;
+      color: #8f2f45;
+    }
+
+    .memory-controls {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 26px;
+    }
+
+    .arrow-btn {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, #ff9ac8, #ff5f9e);
+      color: white;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow:
+        0 5px 0 rgba(170, 50, 100, 0.28),
+        0 10px 18px rgba(255, 95, 158, 0.25);
       display: flex;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      font-family: "Microsoft JhengHei", Georgia, serif;
-      font-size: 15px;
-      line-height: 1.6;
-      padding: 12px;
     }
 
-    .memory-text {
-      font-family: "Microsoft JhengHei", Georgia, serif;
-      font-size: 18px;
-      line-height: 2;
-      white-space: pre-line;
-      text-align: left;
-    }
-
-    .memory-heart {
-      text-align: center;
-      margin-top: 24px;
-      font-size: 34px;
-      animation: heartbeat 1s infinite ease-in-out;
+    .arrow-btn:active {
+      transform: translateY(4px);
+      box-shadow:
+        0 1px 0 rgba(170, 50, 100, 0.28),
+        0 6px 12px rgba(255, 95, 158, 0.2);
     }
 
     @keyframes bounce {
@@ -492,18 +523,19 @@
         font-size: 25px;
       }
 
-      .memory-grid {
-        grid-template-columns: 1fr;
+      .memory-photo-frame {
+        height: 320px;
       }
 
-      .memory-placeholder {
-        height: 130px;
-        font-size: 14px;
-      }
-
-      .memory-text {
+      .memory-caption {
         font-size: 16px;
-        line-height: 1.9;
+        line-height: 1.8;
+      }
+
+      .arrow-btn {
+        width: 52px;
+        height: 52px;
+        font-size: 27px;
       }
     }
   </style>
@@ -568,7 +600,7 @@
     <button class="back-btn" id="backFromCardBtn">← 回上一頁</button>
 
     <div class="card-box">
-      <div class="card-title"🤍🐰 給我親愛的小寶寶 🐰🤍</div>
+      <div class="card-title">🤍🐰 給我親愛的小寶寶 🐰🤍</div>
 
       <div class="card-text">
 我們已經在一起126天咯
@@ -588,18 +620,20 @@
     <div class="memory-box">
       <div class="memory-title">📷</div>
 
-      <div class="memory-grid">
-        <div class="memory-placeholder"></div>
-        <div class="memory-placeholder"></div>
-        <div class="memory-placeholder"></div>
-        <div class="memory-placeholder"></div>
+      <div class="memory-photo-frame">
+        <img id="memoryPhoto" src="images/memory1.jpg" alt="our memory">
       </div>
 
-      <div class="memory-text">回憶文字
+      <div class="memory-count" id="memoryCount">1 / 4</div>
 
-</div>
+      <div class="memory-caption" id="memoryCaption">
+        這裡之後可以放第一張照片的配文。
+      </div>
 
-      <div class="memory-heart">💗</div>
+      <div class="memory-controls">
+        <button class="arrow-btn" id="prevMemoryBtn">‹</button>
+        <button class="arrow-btn" id="nextMemoryBtn">›</button>
+      </div>
     </div>
   </section>
 
@@ -622,6 +656,12 @@
 
     const backFromCardBtn = document.getElementById("backFromCardBtn");
     const backFromMemoryBtn = document.getElementById("backFromMemoryBtn");
+
+    const memoryPhoto = document.getElementById("memoryPhoto");
+    const memoryCaption = document.getElementById("memoryCaption");
+    const memoryCount = document.getElementById("memoryCount");
+    const prevMemoryBtn = document.getElementById("prevMemoryBtn");
+    const nextMemoryBtn = document.getElementById("nextMemoryBtn");
 
     let musicStarted = false;
 
@@ -722,6 +762,7 @@
 
     // 第四頁：我們的回憶
     openMemoryBtn.addEventListener("click", function () {
+      updateMemory();
       showScreen(memoryScreen);
     });
 
@@ -733,6 +774,54 @@
     // 回憶頁：回上一頁
     backFromMemoryBtn.addEventListener("click", function () {
       showScreen(finalScreen);
+    });
+
+    // 回憶照片集
+    const memories = [
+      {
+        image: "images/memory1.jpg",
+        caption: "照片的配文。"
+      },
+      {
+        image: "images/memory2.jpg",
+        caption: "照片的配文。"
+      },
+      {
+        image: "images/memory3.jpg",
+        caption: "照片的配文。"
+      },
+      {
+        image: "images/memory4.jpg",
+        caption: "照片的配文。"
+      }
+    ];
+
+    let currentMemoryIndex = 0;
+
+    function updateMemory() {
+      memoryPhoto.src = memories[currentMemoryIndex].image;
+      memoryCaption.textContent = memories[currentMemoryIndex].caption;
+      memoryCount.textContent = `${currentMemoryIndex + 1} / ${memories.length}`;
+    }
+
+    prevMemoryBtn.addEventListener("click", function () {
+      currentMemoryIndex--;
+
+      if (currentMemoryIndex < 0) {
+        currentMemoryIndex = memories.length - 1;
+      }
+
+      updateMemory();
+    });
+
+    nextMemoryBtn.addEventListener("click", function () {
+      currentMemoryIndex++;
+
+      if (currentMemoryIndex >= memories.length) {
+        currentMemoryIndex = 0;
+      }
+
+      updateMemory();
     });
   </script>
 </body>

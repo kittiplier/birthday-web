@@ -105,6 +105,43 @@
       letter-spacing: 1px;
     }
 
+    /* 點擊粉紅小愛心特效 */
+
+    .click-heart {
+       position: fixed;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+      z-index: 9999;
+     font-size: 11px;
+     color: #ff1493;
+      text-shadow:
+       0 0 3px #ffffff,
+       0 0 7px #ffb6e6,
+       0 0 14px #ff4fbc,
+       0 0 26px #ff00aa,
+       0 0 40px #ff00ff;
+     filter: brightness(1.8) saturate(2);
+     animation: heartBurst 0.85s ease-out forwards;
+}
+
+    @keyframes heartBurst {
+      0% {
+        opacity: 1;
+        transform: translate(0, 0) scale(0.4) rotate(0deg);
+      }
+
+      60% {
+        opacity: 1;
+        transform: translate(var(--x), var(--y)) scale(1.25) rotate(18deg);
+      }
+
+      100% {
+        opacity: 0;
+        transform: translate(calc(var(--x) * 1.35), calc(var(--y) * 1.35)) scale(0.2) rotate(35deg);
+      }
+    }
+
     /* 問題頁共用 */
 
     .question-page {
@@ -955,6 +992,45 @@
 
       updateMemory();
     });
+
+   // 點擊任何地方都爆出螢光粉紅小愛心，但點 NO 不爆
+  document.addEventListener("click", function (event) {
+    if (event.target.classList.contains("no-btn")) {
+     return;
+   }
+
+  createHeartBurst(event.clientX, event.clientY);
+});
+
+    function createHeartBurst(x, y) {
+      const heartCount = 14;
+
+      for (let i = 0; i < heartCount; i++) {
+        const heart = document.createElement("div");
+        heart.className = "click-heart";
+        heart.textContent = "♥";
+
+        const angle = (Math.PI * 2 * i) / heartCount;
+        const distance = 35 + Math.random() * 35;
+
+        const moveX = Math.cos(angle) * distance;
+        const moveY = Math.sin(angle) * distance;
+
+        heart.style.left = x + "px";
+        heart.style.top = y + "px";
+        heart.style.setProperty("--x", moveX + "px");
+        heart.style.setProperty("--y", moveY + "px");
+
+        heart.style.fontSize = 7 + Math.random() * 7 + "px";
+        heart.style.animationDelay = Math.random() * 0.08 + "s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(function () {
+          heart.remove();
+        }, 1000);
+      }
+    }
   </script>
 </body>
 </html>
